@@ -1,0 +1,47 @@
+﻿
+@model TelegramSMM.ViewModels.RegisterModel
+
+@{
+    ViewBag.Title = "Register";
+}
+
+<h2>Регистрация</h2>
+
+
+@using (FormExtensions.BeginForm(Html))
+{
+    @Html.AntiForgeryToken()
+
+    <div>
+        <h4>Регистрация пользователя</h4>
+        <hr />
+        @Html.ValidationSummary(false)
+
+        <div>
+            Электронный адрес
+            <div>
+                @Html.EditorFor(model => model.Email)
+            </div>
+        </div>
+
+        <div>
+            Пароль
+            <div>
+                @Html.EditorFor(model => model.Password)
+            </div>
+        </div>
+
+        <div>
+            Подтвердить пароль
+            <div>
+                @Html.EditorFor(model => model.PasswordConfirm)
+            </div>
+        </div>
+
+        <div>
+            <div>
+                <input type="submit" value="Зарегистрировать" />
+            </div>
+        </div>
+    </div>
+}
