@@ -11,9 +11,8 @@ namespace TelegramSMM.Models
         public DateTime PublicationDate { get; set; }
         public Channel Channel { get; set; }
         public int ChannelId { get; set; }
-        public User User { get; set; }
-        public int UserId { get; set; }
         public Post Post { get; set; }
         public int PostId { get; set; }
+        public DateTime DatePost { get; set; }
     }
 }

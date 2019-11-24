@@ -15,7 +15,7 @@ namespace TelegramSMM.Models
       
         public ICollection<Post> Posts { get; set; }
         public ICollection<Channel> Channels { get; set; }
-        public ICollection<Order> Orders { get; set; }
+      
 
 
 
@@ -24,8 +24,7 @@ namespace TelegramSMM.Models
             
             Posts = new List<Post>();
             Channels = new List<Channel>();
-            Orders = new List<Order>();
-
+           
         }
     }
 }

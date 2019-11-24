@@ -195,6 +195,7 @@
     <Compile Include="Models\ApplicationContext.cs" />
     <Compile Include="Models\Channel.cs" />
     <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\Phone.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\Theme.cs" />
@@ -204,6 +205,13 @@
     <Compile Include="ViewModels\RegisterModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\telesmm.mdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\telesmm_log.ldf">
+      <DependentUpon>telesmm.mdf</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Components\App.jsx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
@@ -266,7 +274,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
     <Content Include="Scripts\umd\popper-utils.min.js.map" />
@@ -280,7 +287,8 @@
     <Content Include="Views\Account\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Folder Include="Images\" />
+    <Folder Include="Views\Home\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

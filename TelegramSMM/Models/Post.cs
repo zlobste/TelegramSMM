@@ -13,7 +13,6 @@ namespace TelegramSMM.Models
         public string Link { get; set; }
         public string Image { get; set; }
         public string AdditionalInformation { get; set; }
-        public DateTime DatePost { get; set; }
         public User User { get; set; }
         public string UserId { get; set; }
         public bool IsDeleted { get; set; }
