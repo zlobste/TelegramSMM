@@ -52,6 +52,12 @@
     <Compile Include="EditChannel.Designer.cs">
       <DependentUpon>EditChannel.cs</DependentUpon>
     </Compile>
+    <Compile Include="EditChannelTheme.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditChannelTheme.Designer.cs">
+      <DependentUpon>EditChannelTheme.cs</DependentUpon>
+    </Compile>
     <Compile Include="EditOrder.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -63,6 +69,12 @@
     </Compile>
     <Compile Include="EditPost.Designer.cs">
       <DependentUpon>EditPost.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditQuery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditQuery.Designer.cs">
+      <DependentUpon>EditQuery.cs</DependentUpon>
     </Compile>
     <Compile Include="EditRole.cs">
       <SubType>Form</SubType>
@@ -76,6 +88,18 @@
     <Compile Include="EditTheme.Designer.cs">
       <DependentUpon>EditTheme.cs</DependentUpon>
     </Compile>
+    <Compile Include="EditUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditUser.Designer.cs">
+      <DependentUpon>EditUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditUserRole.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditUserRole.Designer.cs">
+      <DependentUpon>EditUserRole.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -84,6 +108,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="telesmmDataSet.cs">
+      <DependentUpon>telesmmDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="telesmmDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -92,17 +119,29 @@
     <EmbeddedResource Include="EditChannel.resx">
       <DependentUpon>EditChannel.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="EditChannelTheme.resx">
+      <DependentUpon>EditChannelTheme.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EditOrder.resx">
       <DependentUpon>EditOrder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EditPost.resx">
       <DependentUpon>EditPost.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="EditQuery.resx">
+      <DependentUpon>EditQuery.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EditRole.resx">
       <DependentUpon>EditRole.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EditTheme.resx">
       <DependentUpon>EditTheme.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditUser.resx">
+      <DependentUpon>EditUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditUserRole.resx">
+      <DependentUpon>EditUserRole.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

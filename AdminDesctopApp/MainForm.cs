@@ -124,7 +124,8 @@ namespace AdminDesctopApp
 
         private void editQueryToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            var qe = new EditQuery();
+            qe.Show();
         }
 
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
@@ -168,7 +169,26 @@ namespace AdminDesctopApp
                 edt.ShowDialog();
                 aspNetRolesTableAdapter.Fill(telesmmDataSet.AspNetRoles);
             }
-                telesmmDataSet.AcceptChanges();
+            else if (dataGridView1.DataSource == aspNetUsersBindingSource)
+            {
+                var edt = new EditUser();
+                edt.ShowDialog();
+                aspNetUsersTableAdapter.Fill(telesmmDataSet.AspNetUsers);
+            }
+            else if (dataGridView1.DataSource == themeChannelsBindingSource)
+            {
+                var edt = new EditChannelTheme();
+                edt.ShowDialog();
+                themeChannelsTableAdapter.Fill(telesmmDataSet.ThemeChannels);
+            }
+            else if (dataGridView1.DataSource == aspNetUserRolesBindingSource)
+            {
+                var edt = new EditUserRole();
+                edt.ShowDialog();
+                aspNetUserRolesTableAdapter.Fill(telesmmDataSet.AspNetUserRoles);
+            }
+
+            telesmmDataSet.AcceptChanges();
         }
 
         private void updateToolStripMenuItem_Click(object sender, EventArgs e)
@@ -253,6 +273,49 @@ namespace AdminDesctopApp
                 edt.ShowDialog();
                 aspNetRolesTableAdapter.Fill(telesmmDataSet.AspNetRoles);
             }
+            else if (dataGridView1.DataSource == aspNetUsersBindingSource)
+            {
+                var st = new telesmmDataSet.AspNetUsersDataTable();
+                aspNetUsersTableAdapter.FillBy(st, dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
+                object[] row = st.Rows[0].ItemArray;
+                var edt = new EditUser(
+                    row[0].ToString(),
+                    row[3].ToString(),
+                   Convert.ToDouble( row[2]),
+                    row[4].ToString(),
+                    row[1].ToString(),
+                    Convert.ToBoolean(row[6])
+                );
+                edt.ShowDialog();
+                aspNetUsersTableAdapter.Fill(telesmmDataSet.AspNetUsers);
+            }
+            else if (dataGridView1.DataSource == themeChannelsBindingSource)
+            {
+                var st = new telesmmDataSet.ThemeChannelsDataTable();
+                themeChannelsTableAdapter.FillBy(st, Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value) , Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[1].Value));
+                object[] row = st.Rows[0].ItemArray;
+                var edt = new EditChannelTheme(
+                    Convert.ToInt32(row[0]),
+                            Convert.ToInt32(row[1])
+
+                );
+                edt.ShowDialog();
+                themeChannelsTableAdapter.Fill(telesmmDataSet.ThemeChannels);
+            }
+            else if (dataGridView1.DataSource == aspNetUserRolesBindingSource)
+            {
+                var st = new telesmmDataSet.AspNetUserRolesDataTable();
+                aspNetUserRolesTableAdapter.FillBy(st, dataGridView1.SelectedRows[0].Cells[0].Value.ToString(), dataGridView1.SelectedRows[0].Cells[1].Value.ToString());
+                object[] row = st.Rows[0].ItemArray;
+                var edt = new EditUserRole(
+                    row[0].ToString(),
+                    row[1].ToString()
+
+                );
+                edt.ShowDialog();
+                aspNetUserRolesTableAdapter.Fill(telesmmDataSet.AspNetUserRoles);
+            }
+
             telesmmDataSet.AcceptChanges();
         }
 
@@ -290,7 +353,21 @@ namespace AdminDesctopApp
             {
                 aspNetRolesTableAdapter.DeleteQuery(dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
                 aspNetRolesTableAdapter.Fill(telesmmDataSet.AspNetRoles);
-
+            }
+            else if (dataGridView1.DataSource == aspNetUsersBindingSource)
+            {
+                aspNetUsersTableAdapter.DeleteQuery(dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
+                aspNetUsersTableAdapter.Fill(telesmmDataSet.AspNetUsers);
+            }
+            else if (dataGridView1.DataSource == themeChannelsBindingSource)
+            {
+                themeChannelsTableAdapter.DeleteQuery(Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[0].Value) , Convert.ToInt32(dataGridView1.SelectedRows[0].Cells[1].Value));
+                themeChannelsTableAdapter.Fill(telesmmDataSet.ThemeChannels);
+            }
+            else if (dataGridView1.DataSource == aspNetUserRolesBindingSource)
+            {
+                aspNetUserRolesTableAdapter.DeleteQuery(dataGridView1.SelectedRows[0].Cells[0].Value.ToString(), dataGridView1.SelectedRows[0].Cells[1].Value.ToString());
+                aspNetUserRolesTableAdapter.Fill(telesmmDataSet.AspNetUserRoles);
             }
         }
     }

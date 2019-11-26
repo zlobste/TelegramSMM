@@ -49,7 +49,10 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.aspNetUsersBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.telesmmDataSet = new AdminDesctopApp.telesmmDataSet();
             this.themesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.aspNetRolesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.aspNetUserRolesBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -69,9 +72,6 @@
             this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.telesmmDataSet = new AdminDesctopApp.telesmmDataSet();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.aspNetRolesTableAdapter = new AdminDesctopApp.telesmmDataSetTableAdapters.AspNetRolesTableAdapter();
             this.aspNetUserRolesTableAdapter = new AdminDesctopApp.telesmmDataSetTableAdapters.AspNetUserRolesTableAdapter();
             this.aspNetUsersTableAdapter = new AdminDesctopApp.telesmmDataSetTableAdapters.AspNetUsersTableAdapter();
@@ -83,6 +83,8 @@
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.aspNetUsersBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.telesmmDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.themesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.aspNetRolesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.aspNetUserRolesBindingSource)).BeginInit();
@@ -92,8 +94,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.themeChannelsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.telesmmDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -106,14 +106,14 @@
             this.editToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 30);
+            this.menuStrip1.Size = new System.Drawing.Size(1117, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(47, 26);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(47, 24);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -129,7 +129,7 @@
             this.themesToolStripMenuItem,
             this.themeChannelsToolStripMenuItem});
             this.dataBaseToolStripMenuItem.Name = "dataBaseToolStripMenuItem";
-            this.dataBaseToolStripMenuItem.Size = new System.Drawing.Size(86, 26);
+            this.dataBaseToolStripMenuItem.Size = new System.Drawing.Size(86, 24);
             this.dataBaseToolStripMenuItem.Text = "DataBase";
             this.dataBaseToolStripMenuItem.Click += new System.EventHandler(this.dataBaseToolStripMenuItem_Click);
             // 
@@ -192,7 +192,7 @@
             // editQueryToolStripMenuItem
             // 
             this.editQueryToolStripMenuItem.Name = "editQueryToolStripMenuItem";
-            this.editQueryToolStripMenuItem.Size = new System.Drawing.Size(88, 26);
+            this.editQueryToolStripMenuItem.Size = new System.Drawing.Size(88, 24);
             this.editQueryToolStripMenuItem.Text = "EditQuery";
             this.editQueryToolStripMenuItem.Click += new System.EventHandler(this.editQueryToolStripMenuItem_Click);
             // 
@@ -203,7 +203,7 @@
             this.updateToolStripMenuItem,
             this.deleteToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(49, 26);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(49, 24);
             this.editToolStripMenuItem.Text = "Edit";
             this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
             // 
@@ -237,9 +237,10 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 64);
+            this.label1.Font = new System.Drawing.Font("Arial Narrow", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(12, 59);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(45, 17);
+            this.label1.Size = new System.Drawing.Size(111, 46);
             this.label1.TabIndex = 2;
             this.label1.Text = "Users";
             // 
@@ -254,14 +255,33 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(776, 276);
+            this.dataGridView1.Size = new System.Drawing.Size(1093, 351);
             this.dataGridView1.TabIndex = 3;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.ReadOnly = true;
+            this.idDataGridViewTextBoxColumn.Width = 125;
             // 
             // aspNetUsersBindingSource
             // 
             this.aspNetUsersBindingSource.DataMember = "AspNetUsers";
             this.aspNetUsersBindingSource.DataSource = this.bindingSource1;
+            // 
+            // bindingSource1
+            // 
+            this.bindingSource1.DataSource = this.telesmmDataSet;
+            this.bindingSource1.Position = 0;
+            // 
+            // telesmmDataSet
+            // 
+            this.telesmmDataSet.DataSetName = "telesmmDataSet";
+            this.telesmmDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // themesBindingSource
             // 
@@ -325,7 +345,7 @@
             this.bindingNavigator1.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.bindingNavigator1.Name = "bindingNavigator1";
             this.bindingNavigator1.PositionItem = this.bindingNavigatorPositionItem;
-            this.bindingNavigator1.Size = new System.Drawing.Size(312, 31);
+            this.bindingNavigator1.Size = new System.Drawing.Size(312, 27);
             this.bindingNavigator1.TabIndex = 4;
             this.bindingNavigator1.Text = "bindingNavigator1";
             // 
@@ -335,13 +355,13 @@
             this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
             this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
             this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(29, 28);
+            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(29, 24);
             this.bindingNavigatorAddNewItem.Text = "Добавить";
             // 
             // bindingNavigatorCountItem
             // 
             this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(55, 28);
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(55, 24);
             this.bindingNavigatorCountItem.Text = "для {0}";
             this.bindingNavigatorCountItem.ToolTipText = "Общее число элементов";
             // 
@@ -351,7 +371,7 @@
             this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
             this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
             this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(29, 28);
+            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(29, 24);
             this.bindingNavigatorDeleteItem.Text = "Удалить";
             // 
             // bindingNavigatorMoveFirstItem
@@ -360,7 +380,7 @@
             this.bindingNavigatorMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem.Image")));
             this.bindingNavigatorMoveFirstItem.Name = "bindingNavigatorMoveFirstItem";
             this.bindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(29, 28);
+            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(29, 24);
             this.bindingNavigatorMoveFirstItem.Text = "Переместить в начало";
             // 
             // bindingNavigatorMovePreviousItem
@@ -369,13 +389,13 @@
             this.bindingNavigatorMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem.Image")));
             this.bindingNavigatorMovePreviousItem.Name = "bindingNavigatorMovePreviousItem";
             this.bindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(29, 28);
+            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(29, 24);
             this.bindingNavigatorMovePreviousItem.Text = "Переместить назад";
             // 
             // bindingNavigatorSeparator
             // 
             this.bindingNavigatorSeparator.Name = "bindingNavigatorSeparator";
-            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 31);
+            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 27);
             // 
             // bindingNavigatorPositionItem
             // 
@@ -390,7 +410,7 @@
             // bindingNavigatorSeparator1
             // 
             this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
-            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 31);
+            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 27);
             // 
             // bindingNavigatorMoveNextItem
             // 
@@ -398,7 +418,7 @@
             this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
             this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
             this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(29, 28);
+            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(29, 24);
             this.bindingNavigatorMoveNextItem.Text = "Переместить вперед";
             // 
             // bindingNavigatorMoveLastItem
@@ -407,32 +427,13 @@
             this.bindingNavigatorMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem.Image")));
             this.bindingNavigatorMoveLastItem.Name = "bindingNavigatorMoveLastItem";
             this.bindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(29, 28);
+            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(29, 24);
             this.bindingNavigatorMoveLastItem.Text = "Переместить в конец";
             // 
             // bindingNavigatorSeparator2
             // 
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
-            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 31);
-            // 
-            // bindingSource1
-            // 
-            this.bindingSource1.DataSource = this.telesmmDataSet;
-            this.bindingSource1.Position = 0;
-            // 
-            // telesmmDataSet
-            // 
-            this.telesmmDataSet.DataSetName = "telesmmDataSet";
-            this.telesmmDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.ReadOnly = true;
-            this.idDataGridViewTextBoxColumn.Width = 125;
+            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 27);
             // 
             // aspNetRolesTableAdapter
             // 
@@ -470,7 +471,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1117, 525);
             this.Controls.Add(this.bindingNavigator1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label1);
@@ -483,6 +484,8 @@
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.aspNetUsersBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.telesmmDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.themesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.aspNetRolesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.aspNetUserRolesBindingSource)).EndInit();
@@ -493,8 +496,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
             this.bindingNavigator1.ResumeLayout(false);
             this.bindingNavigator1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.telesmmDataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

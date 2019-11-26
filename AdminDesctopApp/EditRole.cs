@@ -59,8 +59,7 @@ namespace AdminDesctopApp
         private void aspNetRolesBindingNavigatorSaveItem_Click(object sender, EventArgs e)
         {
             this.Validate();
-            this.aspNetRolesBindingSource.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.telesmmDataSet);
+            
 
         }
 
