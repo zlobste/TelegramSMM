@@ -1,0 +1,112 @@
+﻿@model TelegramSMM.Models.Post
+
+@{
+    ViewBag.Title = "Create";
+}
+
+
+<h2 class="logo">Create Post</h2>
+<hr class="dashed"/>
+
+@using (Html.BeginForm("Create" , "Posts" , FormMethod.Post,  new {enctype="multipart/form-data"}))
+{
+    @Html.AntiForgeryToken()
+
+
+    
+    <div class="form-max-block">
+        <div class="form-block ">
+
+            <div class="form-min-block ">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger " })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2 " })
+                    <div class="col-md-10">
+                        <input type="text" name ="Title" id="Title" class="form-control" required minlength="3" maxlength="50"/>
+                        
+                        @Html.ValidationMessageFor(model => model.Title, "", new {@class = "text-danger"})
+                    </div>
+                </div>
+
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Text, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <textarea class="form-control" id="Text" name="Text" rows="8" maxlength="140"></textarea>
+                    </div>
+                    @Html.ValidationMessageFor(model => model.Text, "", new { @class = "text-danger" })
+                </div>
+                
+                <div class="form-group ">
+                    <div class="col-md-10">
+                        <input type="submit" value="Create" class="btn btn-primary pl-4 pr-4" />
+                    </div>
+                </div>
+
+            </div>
+            <div class="form-min-block mb-5 ">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Link, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <input type="text" name ="Link" id="Link" class="form-control" required minlength="5"/>
+
+
+                       
+                        @Html.ValidationMessageFor(model => model.Link, "", new {@class = "text-danger"})
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">Information</label>
+                    <div class="col-md-10">
+                        <textarea class="form-control" id="AdditionalInformation" name="AdditionalInformation" rows="4" maxlength="140"></textarea>
+                    </div>
+                    @Html.ValidationMessageFor(model => model.AdditionalInformation, "", new {@class = "text-danger"})
+                </div>
+
+                <div class="form-group">
+                    <div class='file-input ml-3'>
+                        <input type='file'  id="Picture" name="Picture">
+                        <span class='button'>Choose</span>
+                        <label class='label' data-js-label>No picture selected</label>
+                    </div>
+                </div>
+
+    
+            </div>
+        </div>
+    
+        
+    </div>
+    
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<script>
+
+
+    var inputs = document.querySelectorAll('.file-input');
+
+    for (var i = 0, len = inputs.length; i < len; i++) {
+        customInput(inputs[i]);
+    }
+
+    function customInput (el) {
+        const fileInput = el.querySelector('[type="file"]');
+        const label = el.querySelector('[data-js-label]');
+  
+        fileInput.onchange =
+            fileInput.onmouseout = function () {
+                if (!fileInput.value) return;
+
+                var value = fileInput.value.replace(/^.*[\\\/]/, '');
+                el.className += ' -chosen';
+                label.innerText = value;
+            }
+    }
+</script>

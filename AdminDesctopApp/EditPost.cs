@@ -91,6 +91,8 @@ namespace AdminDesctopApp
             }
             else
             {
+
+               
                 string image_name = Guid.NewGuid().ToString();
                 if (pictureBox1.Image != null) 
                 {

@@ -1,0 +1,131 @@
+﻿
+@model TelegramSMM.Models.Post
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2 class="logo">Edit Post</h2>
+<hr class="dashed" />
+
+@using (Html.BeginForm("Edit", "Posts", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.Image)
+
+    <div class="form-max-block">
+        <div class="form-block ">
+
+            <div class="form-min-block ">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger " })
+
+
+
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @if (Model.Image == null || Model.Image == "")
+                        {
+
+                            <img src="~/Images/cardImage.jpg" class="card-img-top" alt="..." style="width: 450px; border-radius: 0.25rem;" />
+                        }
+                        else
+                        {
+                            <img src="~/Images/@Model.Image" class="card-img-top" alt="..." style="width: 450px; border-radius: 0.25rem;" />
+                        }
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class='file-input ml-3'>
+                        <input type='file' id="Picture" name="Picture">
+                        <span class='button'>Choose</span>
+                        <label class='label' data-js-label>No picture selected</label>
+                    </div>
+                </div>
+
+
+
+                <div class="form-group ">
+                    <div class="col-md-10">
+                        <input type="submit" value="Update" class="btn btn-primary pl-4 pr-4" />
+                    </div>
+                </div>
+
+            </div>
+            <div class="form-min-block mb-5 ">
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2 " })
+                    <div class="col-md-10">
+                        <input type="text" name="Title" id="Title" class="form-control" required minlength="3" maxlength="50" value="@Model.Title" />
+
+                        @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Link, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        <input type="text" name="Link" id="Link" class="form-control" required minlength="5" value="@Model.Link" />
+                        @Html.ValidationMessageFor(model => model.Link, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Text, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextAreaFor(model => model.Text, htmlAttributes: new { @class = "form-control" , @rows="6",@maxlength="450"})
+                       
+                    </div>
+                    @Html.ValidationMessageFor(model => model.Text, "", new { @class = "text-danger" })
+                </div>
+
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">Information</label>
+                    <div class="col-md-10">
+                        
+                        @Html.TextAreaFor(model => model.AdditionalInformation, htmlAttributes: new { @class = "form-control" , @rows="4" ,@maxlength="300"})
+                    </div>
+                    @Html.ValidationMessageFor(model => model.AdditionalInformation, "", new { @class = "text-danger" })
+                </div>
+
+
+
+            </div>
+        </div>
+
+
+    </div>
+
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<script>
+ 
+    var inputs = document.querySelectorAll('.file-input');
+
+    for (var i = 0, len = inputs.length; i < len; i++) {
+        customInput(inputs[i]);
+    }
+
+    function customInput(el) {
+        const fileInput = el.querySelector('[type="file"]');
+        const label = el.querySelector('[data-js-label]');
+
+        fileInput.onchange =
+            fileInput.onmouseout = function () {
+                if (!fileInput.value) return;
+
+                var value = fileInput.value.replace(/^.*[\\\/]/, '');
+                el.className += ' -chosen';
+                label.innerText = value;
+            }
+    }
+</script>
