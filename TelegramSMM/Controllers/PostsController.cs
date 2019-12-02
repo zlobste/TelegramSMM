@@ -25,27 +25,13 @@ namespace TelegramSMM.Controllers
             return View(await posts.ToListAsync());
         }
 
-        // GET: Posts/Details/5
-        public async Task<ActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Post post = await db.Posts.FindAsync(id);
-            if (post == null)
-            {
-                return HttpNotFound();
-            }
-            return View(post);
-        }
 
-        // GET: Posts/Create
+        // GET: Channels/Create
         public ActionResult Create()
         {
+
             return View();
         }
-
 
 
         // POST: Posts/Create
@@ -110,13 +96,14 @@ namespace TelegramSMM.Controllers
             return View(post);
         }
 
-        // GET: Posts/Delete/
-        [HttpPost]
-        public async Task<ActionResult> Delete(int? id)
+
+
+        [HttpGet]
+        public async Task<ActionResult> DeletePost(int? id)
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                 return HttpNotFound();
             }
             Post post = await db.Posts.FindAsync(id);
             if (post == null)
@@ -126,10 +113,13 @@ namespace TelegramSMM.Controllers
 
             db.Posts.Remove(post);
             await db.SaveChangesAsync();
+
+
             return RedirectToAction("Index");
         }
 
-      
+
+
 
         protected override void Dispose(bool disposing)
         {

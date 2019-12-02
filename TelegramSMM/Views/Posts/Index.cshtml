@@ -48,8 +48,8 @@
                         <img src="~/Images/@posts[j].Image" class="card-img-top" alt="..." />
                     }
 
-                    <div class="card-body">
-                        <h5 class="card-title">@posts[j].Title</h5>
+                    <div class="card-body ">
+                    <h5 class="card-title">@posts[j].Title</h5>
                         <a href="@posts[j].Link">@posts[j].Link</a>
                         <p class="card-text">@posts[j].Text</p>
                     </div>
@@ -77,7 +77,7 @@
                                 
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    @Html.ActionLink("Delete", "Delete", "Posts", new { id = posts[j].Id }, new { @class = "btn btn-primary" })
+                                    @Html.ActionLink("Delete", "DeletePost", "Posts", new { id = posts[j].Id }, new { @class = "btn btn-primary" })
                                 </div>
                             </div>
                         </div>

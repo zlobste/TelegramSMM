@@ -297,12 +297,9 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Channels\GetChannel.cshtml" />
     <Content Include="Views\Posts\Create.cshtml" />
-    <Content Include="Views\Posts\Details.cshtml" />
     <Content Include="Views\Posts\Edit.cshtml" />
     <Content Include="Views\Posts\Index.cshtml" />
     <Content Include="Views\Channels\Create.cshtml" />
-    <Content Include="Views\Channels\Delete.cshtml" />
-    <Content Include="Views\Channels\Details.cshtml" />
     <Content Include="Views\Channels\Edit.cshtml" />
     <Content Include="Views\Channels\Index.cshtml" />
     <Content Include="Views\Orders\Create.cshtml" />

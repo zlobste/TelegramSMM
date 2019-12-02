@@ -124,3 +124,56 @@ footer {
 .zeroborder {
     border: none;
 }
+
+.round {
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+}
+
+.image-center {
+    display: flex;
+    justify-content: center;
+    padding-top: 35px;
+}
+.t-a-c {
+    text-align: center;
+}
+.bold {
+    font-weight: 700;
+    color: #007bff;
+    font-size: 1.1em;
+}
+
+.big-block {
+    display: flex;
+    justify-content: center;
+}
+.in-big-block {
+
+    width: 250px;
+
+
+}
+
+.maga-block {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.validation-message {
+    color: #007bff;
+    list-style-type: none;
+    width: 250px;
+    
+
+  
+}
+
+.validation-message ul {
+    list-style-type: none;
+    padding-left: 10px;
+    padding-right: 10px;
+
+}
