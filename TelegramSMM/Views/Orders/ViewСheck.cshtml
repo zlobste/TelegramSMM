@@ -1,0 +1,48 @@
+﻿@model TelegramSMM.Models.Order
+
+@{
+    ViewBag.Title = "ViewСheck";
+}
+
+<h2 class="logo">Purchase Receipt</h2>
+<hr class="dashed" />
+
+
+
+<div class="padd">
+
+    <dl class="dl-horizontal">
+        <dt>
+            Company: Telemetr
+        </dt>
+        <dt>
+            You bought an ad from a channel: @Model.Channel.Name
+        </dt>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PublicationDate)
+        </dt>
+
+        <dd>
+            @Model.PublicationDate.ToString("yyyy.MM.dd")
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cost) ₽
+        </dd>
+
+        <dt>
+            Order date
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DatePost)
+        </dd>
+
+    </dl>
+</div>
+

@@ -4,48 +4,77 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Channel.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Post.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PublicationDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DatePost)
-        </th>
-        <th></th>
-    </tr>
+<h2 class="logo">YOUR ORDERS</h2>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Channel.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Post.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PublicationDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DatePost)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
 
-</table>
+<div class="my-table">
+    <table class="table ">
+        <tr class="table-col">
+            <th>
+                Channel
+            </th>
+            <th>
+                Post
+            </th>
+            <th>
+
+                Desired publication date
+            </th>
+            <th>
+                Order date
+            </th>
+            <th></th>
+           
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a href="@item.Channel.Link">@Html.DisplayFor(modelItem => item.Channel.Name)</a>
+                </td>
+                <td>
+                    @Html.ActionLink(item.Post.Title, "Details", "Posts", new { id = item.PostId } , new {@class=""})
+                </td>
+                <td>
+                    @item.PublicationDate.ToString("dd.MM.yyyy")
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DatePost)
+                </td>
+                <td class="column">
+                    @if (item.DealCompleted == false)
+                    {
+                        if (item.Renouncement == true)
+                        {
+                            <p class="red">
+                                Admin refused to advertise</p>
+                        }
+
+                        if (item.IsDone == true)
+                        {
+                            <p class="green">
+                                Admin posted your post
+                            </p>
+                            @Html.ActionLink("Confirm", "ConfirmAdvert", new {id = item.Id}, new {@class = "btn btn-success"})
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Cancel the order", "Delete", new {id = item.Id}, new {@class = "btn btn-danger"})
+                        }
+                    }
+                    else
+                    {
+                        <p class="green">
+                            deal completed
+                        </p>
+                        @Html.ActionLink("View check", "ViewСheck", new {id = item.Id}, new {@class = "btn btn-success"})
+                    }
+
+                </td>
+            </tr>
+        }
+
+    </table>
+    </div>

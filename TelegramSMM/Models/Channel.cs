@@ -21,15 +21,12 @@ namespace TelegramSMM.Models
         public string Image { get; set; }
         public string UserName { get; set; }
 
-
-        public ICollection<Theme> Themes{ get; set; }
         public ICollection<Order> Orders { get; set; }
-
 
 
         public Channel()
         {
-            Themes = new List<Theme>();
+           
             Orders = new List<Order>();
 
         }

@@ -53,23 +53,23 @@
                         <a href="@posts[j].Link">@posts[j].Link</a>
                         <p class="card-text">@posts[j].Text</p>
                     </div>
-                    
+                    @{ string an = "aaaa";}
                     <div class="card-footer ">
-
+                        
                         @Html.ActionLink("Update", "Edit", "Posts", new { id = posts[j].Id }, new { @class = "btn btn-primary" })
                        
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#@posts[j].Link">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#@an@posts[j].Title.Replace(' ','a')">
                             Delete
                         </button>
                     </div>
                     
-                    
+                   
 
-                    <div class="modal fade" id="@posts[j].Link" tabindex="-1" role="dialog" aria-labelledby="@posts[j].Link" aria-hidden="true">
+                    <div class="modal fade" id="@an@posts[j].Title.Replace(' ','a')" tabindex="-1" role="dialog" aria-labelledby="@an@posts[j].Title.Replace(' ','a')" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="@posts[j].Link">Are you sure you want to delete the post "@posts[j].Title" ?</h5>
+                                    <h5 class="modal-title" id="@an@posts[j].Title.Replace(' ','a')">Are you sure you want to delete the post "@posts[j].Title" ?</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>

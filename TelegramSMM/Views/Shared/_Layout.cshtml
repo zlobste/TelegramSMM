@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNet.Identity
+@using TelegramSMM.Models
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -24,23 +26,57 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            
-           
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Cabinet
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="/Channels/Index">My channels</a>
-                    <a class="dropdown-item" href="/Posts/Index">My posts</a>
-                    <a class="dropdown-item" href="/Orders/Index">My orders</a>
-                </div>
-            </li>
+
+            @if (User.Identity.IsAuthenticated)
+            {
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Cabinet
+                    </a>
+
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/Channels/Index">My channels</a>
+                        <a class="dropdown-item" href="/Posts/Index">My posts</a>
+                        <a class="dropdown-item" href="/Orders/GetOrdersToMyChannels">Orders</a>
+                        <a class="dropdown-item" href="/Orders/Index">My orders</a>
+                    </div>
+
+                </li>
+            }
             <li class="nav-item">
-                <a class="nav-link disabled" href="#">Search Channels</a>
+                <a class="nav-link" href="/Home/Index">Search Channels</a>
             </li>
+            @if (User.Identity.IsAuthenticated)
+            {
+                string UserId = User.Identity.GetUserId();
+                ApplicationContext db = new ApplicationContext();
+                User u = db.Users.FirstOrDefault(m => m.Id == UserId);
+               
+
+
+
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#">User: @u.Email</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#">Balance: @u.Balance ₽</a>
+                </li>
+                if (ViewBag.Title == "ViewСheck" || ViewBag.Title == "SalesReceipt")
+                {
+                    <li class="alert alert-primary ml-5" role="alert">
+                        click  " Ctrl + P " to print report
+                    </li>
+                }
+            }
         </ul>
+        
+        
+
+
         <ul class="nav justify-content-end">
+            
+
+
             @if (User.Identity.IsAuthenticated)
             {
                 <li class="nav-item">
@@ -49,12 +85,20 @@
             }
             else
             {
-                <li class="nav-item">
-                    <a class="nav-link active" href="/Account/Login"></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="/Account/Register">Sing up</a>
-                </li>
+                if (ViewBag.Title != null && ViewBag.Title == "Register")
+                {
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/Account/Login">Sing in</a>
+                    </li>
+                }
+                else
+                {
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/Account/Register">Sing up</a>
+                    </li>
+                }
+
+
             }
 
         </ul>

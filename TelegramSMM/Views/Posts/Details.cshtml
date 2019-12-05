@@ -1,0 +1,71 @@
+﻿@model TelegramSMM.Models.Post
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2 class="logo">POST DETAILS</h2>
+<hr class="dashed" />
+
+<div>
+
+    <div class="b-m">
+
+
+
+        <div class="b-in">
+            <div>
+                
+                @if (@Model.Image == null || @Model.Image == "")
+                {
+
+                    <img src="~/Images/cardImage.jpg" class="card-img-top" alt="..." />
+                }
+                else
+                {
+                    <img src="~/Images/@Model.Image" class="card-img-top" alt="..." />
+                }
+                
+            </div>
+        </div>
+        <div class="b-in">
+
+            <div class="blue">
+                @Html.DisplayNameFor(model => model.Title):
+            </div>
+
+            <div >
+                @Html.DisplayFor(model => model.Title)
+            </div>
+
+            <div class="blue">
+                @Html.DisplayNameFor(model => model.Text):
+            </div>
+
+            <div >
+                @Html.DisplayFor(model => model.Text)
+            </div>
+
+            <div class="blue">
+                @Html.DisplayNameFor(model => model.Link):
+            </div>
+
+            <div >
+                <a href="@Model.Link">@Model.Link</a>
+            </div>
+
+            <div class="blue">
+                @Html.DisplayNameFor(model => model.AdditionalInformation):
+            </div>
+
+            <div>
+                @Html.DisplayFor(model => model.AdditionalInformation)
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+

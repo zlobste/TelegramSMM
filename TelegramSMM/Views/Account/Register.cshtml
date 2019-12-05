@@ -5,43 +5,46 @@
     ViewBag.Title = "Register";
 }
 
-<h2>Регистрация</h2>
 
+<h2 class="logo">REGISTRATION</h2>
+<hr class="dashed" />
+<div class="big-block">
+<div class="in-big-block">
+    @using (FormExtensions.BeginForm(Html))
+    {
+        @Html.AntiForgeryToken()
 
-@using (FormExtensions.BeginForm(Html))
-{
-    @Html.AntiForgeryToken()
-
-    <div>
-        <h4>Регистрация пользователя</h4>
-        <hr />
-        @Html.ValidationSummary(false)
-
-        <div>
-            Электронный адрес
-            <div>
-                @Html.EditorFor(model => model.Email)
+       
+      
+            @Html.ValidationSummary(true, "", new { @class = "validation-message  alert alert-primary" })
+            <div class="form-group">
+                Email
+                <div>
+                    <input type="email" name="Email" id="Email" class="form-control" required="required" />
+                </div>
             </div>
-        </div>
 
-        <div>
-            Пароль
-            <div>
-                @Html.EditorFor(model => model.Password)
-            </div>
-        </div>
+            <div class="form-group">
+                Password
+                <div>
+                    <input type="password" name="Password" id="Password" class="form-control" required="required" />
 
-        <div>
-            Подтвердить пароль
-            <div>
-                @Html.EditorFor(model => model.PasswordConfirm)
+                </div>
             </div>
-        </div>
 
-        <div>
-            <div>
-                <input type="submit" value="Зарегистрировать" />
+            <div class="form-group">
+                Confirm password
+                <div>
+                    <input type="password" name="PasswordConfirm" id="PasswordConfirm" class="form-control" required="required" />
+                </div>
             </div>
-        </div>
-    </div>
-}
+
+            <div class="form-group">
+                <div>
+                    <input type="submit" class="btn btn-primary" value="Sing up" />
+                </div>
+            </div>
+      
+    }
+</div>
+</div>

@@ -41,7 +41,7 @@ namespace TelegramSMM.Controllers
         {
             if (ModelState.IsValid)
             {
-                User user = new User { UserName = model.Email, Email = model.Email };
+                User user = new User { UserName = model.Email, Email = model.Email, Balance = 1000};//Balance + 1000
                 IdentityResult result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -77,7 +77,7 @@ namespace TelegramSMM.Controllers
                 User user = await UserManager.FindAsync(model.Email, model.Password);
                 if (user == null)
                 {
-                    ModelState.AddModelError("", "Неверный логин или пароль.");
+                    ModelState.AddModelError("", "Wrong login or password.");
                 }
                 else
                 {

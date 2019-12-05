@@ -138,11 +138,12 @@ namespace TelegramSMM.Controllers
                     return View(channel);
 
                 }
-
-
             }
             return RedirectToAction("Index");
         }
+
+
+       
 
 
 
@@ -150,15 +151,14 @@ namespace TelegramSMM.Controllers
         public async Task<ActionResult> Edit(Channel ch )
         {
 
-          /*  money+= 1;
             Channel channel = await db.Channels.FindAsync(ch.Id);
             if (channel == null)
             {
                 return HttpNotFound();
             }
 
-          *//*  channel.PostPrice = ch.PostPrice;*//*
-            db.Entry(channel).State = EntityState.Modified;*/
+            channel.PostPrice = ch.PostPrice;
+            db.Entry(channel).State = EntityState.Modified;
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
@@ -175,6 +175,11 @@ namespace TelegramSMM.Controllers
                 return HttpNotFound();
             }
             Channel channel = await db.Channels.FindAsync(id);
+            if (channel.Image != null && channel.Image != "")
+            {
+                string deletePath = @"C:\Users\HP\source\repos\TelegramSMM\TelegramSMM\Images\" + channel.Image;
+                System.IO.File.Delete(deletePath);
+            }
             db.Channels.Remove(channel);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");

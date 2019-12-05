@@ -24,7 +24,6 @@ namespace TelegramSMM.Models
             return new ApplicationContext();
         }
 
-        public DbSet<Theme> Themes { get; set; }
         public DbSet<Channel>Channels { get; set; }
 
     }

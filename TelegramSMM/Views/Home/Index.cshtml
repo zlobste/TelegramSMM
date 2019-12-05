@@ -1,11 +1,418 @@
-﻿
+﻿@using TelegramSMM.Models
+@model  TelegramSMM.ViewModels.Search
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2 class="logo">Index</h2>
+<hr class="dashed" />
 
-@if (User.Identity.IsAuthenticated)
-{
-<div>@User.Identity.Name</div>
+
+
+
+<div class="colm">
+  
+
+
+
+    <div class="big-block">
+        <div class="in-big-block2">
+
+            @if (Model != null)
+            {
+
+
+                <form action="/Home/Index" method="post" class="my-form">
+                    <div class="mega-search">
+                        <div class="search-filter">
+                            <div class="input-group" style="margin-left: 10px">
+                                <input class="form-control border-primary py-2" placeholder="channel" name="Text" id="Text">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-primary" type="submit">
+                                        Search
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="filter-sort-block">
+                                <div class="filter-block">
+                                    <div class="in-filter-block">
+                                        <text class="sort-logo">post price</text>
+                                        @if (Model.MinPrice != null)
+                                        {
+                                            <input class="form-control border-primary py-2" placeholder="min" name="MinPrice" id="MinPrice"  type="number" min="0" value="@Model.MinPrice">
+                                        }
+                                        else
+                                        {
+                                            <input class="form-control border-primary py-2" placeholder="min" name="MinPrice" id="MinPrice" type="number" min="0">
+                                        }
+
+
+                                        @if (Model.MaxPrice != null)
+                                        {
+                                            <input class="form-control border-primary py-2" placeholder="max" name="MaxPrice" type="number" min="0" id="MaxPrice" value="@Model.MaxPrice">
+                                        }
+                                        else
+                                        {
+                                            <input class="form-control border-primary py-2" placeholder="max" type="number" min="0" name="MaxPrice" id="MaxPrice">
+                                        }
+                                    </div>
+                                    <div class="in-filter-block">
+                                        <text class="sort-logo">count of subscribers</text>
+                                        @if (Model.MinSubscribers != null)
+                                        {
+                                            <input class="form-control border-primary py-2" placeholder="min" name="MinSubscribers" id="MinSubscribers" type="number" min="0" value="@Model.MinSubscribers">
+                                        }
+                                        else
+                                        {
+                                            <input class="form-control border-primary py-2" placeholder="min" name="MinSubscribers"  type="number" min="0" id="MinSubscribers">
+                                        }
+
+
+                                        @if (Model.MaxSubscribers != null)
+                                        {
+                                            <input class="form-control border-primary py-2" placeholder="max" name="MaxSubscribers" type="number" min="0" id="MaxSubscribers" value="@Model.MaxSubscribers">
+                                        }
+                                        else
+                                        {
+                                            <input class="form-control border-primary py-2" placeholder="max" name="MaxSubscribers" type="number" min="0" id="MaxSubscribers">
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sort-block">
+                            <div class="in-sort-block">
+                                <text class="sort-logo">sort</text>
+                            </div>
+                            @if (Model.Sort == "increasePrice")
+                            {
+
+                                <div class="in-sort-block">
+                                    <div>
+                                        <input id="color" name="Sort" type="radio" value="decreasePrice" />
+                                        <span>price decrease</span> <br />
+                                    </div>
+                                    <div>
+                                        <input id="color" name="Sort" type="radio" value="increasePrice" checked="checked" />
+                                        <span>price increase</span> <br />
+                                    </div>
+                                </div>
+
+                            }
+                            else if (Model.Sort == "decreasePrice")
+                            {
+                                <div class="in-sort-block">
+                                    <div>
+                                        <input id="color" name="Sort" type="radio" value="decreasePrice" checked="checked" />
+                                        <span>price decrease</span> <br />
+                                    </div>
+                                    <div>
+                                        <input id="color" name="Sort" type="radio" value="increasePrice" />
+                                        <span>price increase</span> <br />
+                                    </div>
+                                </div>
+
+                            }
+                            else
+                            {
+                                <div class="in-sort-block">
+                                    <div>
+                                        <input id="color" name="Sort" type="radio" value="decreasePrice" />
+                                        <span>price decrease</span> <br />
+                                    </div>
+                                    <div>
+                                        <input id="color" name="Sort" type="radio" value="increasePrice" />
+                                        <span>price increase</span> <br />
+                                    </div>
+                                </div>
+                            }
+
+
+
+
+                            @if (Model.Sort == "increaseSubscribers")
+                            {
+
+                                <div class="in-sort-block">
+                                    <div>
+                                        <input id="color" name="Sort" type="radio" value="decreaseSubscribers" />
+                                        <span>subscribers decrease</span> <br />
+                                    </div>
+                                    <div>
+                                        <input id="color" name="Sort" type="radio" value="increaseSubscribers" checked="checked" />
+                                        <span>subscribers increase</span> <br />
+                                    </div>
+                                </div>
+                            }
+                            else if (Model.Sort == "decreaseSubscribers")
+                            {
+                                <div class="in-sort-block">
+                                    <div>
+                                        <input id="color" name="Sort" type="radio" value="decreaseSubscribers" checked="checked" />
+                                        <span>subscribers decrease</span> <br />
+                                    </div>
+                                    <div>
+                                        <input id="color" name="Sort" type="radio" value="increaseSubscribers" />
+                                        <span>subscribers increase</span> <br />
+                                    </div>
+                                </div>
+
+                            }
+                            else
+                            {
+                                <div class="in-sort-block">
+                                    <div>
+                                        <input id="color" name="Sort" type="radio" value="decreaseSubscribers" />
+                                        <span>subscribers decrease</span> <br />
+                                    </div>
+                                    <div>
+                                        <input id="color" name="Sort" type="radio" value="increaseSubscribers" />
+                                        <span>subscribers increase</span> <br />
+                                    </div>
+                                </div>
+
+                            }
+
+
+
+                            @if (Model.Sort == "no")
+                            {
+                                <div class="in-sort-block">
+                                    <div>
+                                        <input id="color" name="Sort" type="radio" value="no" checked="checked" />
+                                        <span>Don't sort by subscribers</span> <br />
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="in-sort-block">
+                                    <div>
+                                        <input id="color" name="Sort" type="radio" value="no" />
+                                        <span>Don't sort by subscribers</span> <br />
+                                    </div>
+                                </div>
+                            }
+
+
+                           
+                        </div>
+                    </div>
+                </form>
+
+
+
+            }
+            else
+            {
+                <form action="/Home/Index" method="post" class="my-form">
+                    <div class="mega-search">
+                        <div class="search-filter">
+                            <div class="input-group" style="margin-left: 10px">
+                                <input class="form-control border-primary py-2" placeholder="channel" name="Text" id="Text">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-primary" type="submit">
+                                        Search
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="filter-sort-block">
+                                <div class="filter-block">
+                                    <div class="in-filter-block">
+                                        <text class="sort-logo">post price</text>
+                                        <input class="form-control border-primary py-2" placeholder="min" name="MinPrice" id="MinPrice" type="number" min="0">
+                                        <input class="form-control border-primary py-2" placeholder="max" name="MaxPrice" id="MaxPrice" type="number" min="0">
+                                    </div>
+                                    <div class="in-filter-block">
+                                        <text class="sort-logo">count of subscribers</text>
+                                        <input class="form-control border-primary py-2" placeholder="min" name="MinSubscribers" id="MinSubscribers" type="number" min="0">
+                                        <input class="form-control border-primary py-2" placeholder="max" name="MaxSubscribers" id="MaxSubscribers" type="number" min="0">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sort-block">
+                            <div class="in-sort-block">
+                                <text class="sort-logo">sort</text>
+                            </div>
+
+                            <div class="in-sort-block">
+                                <div>
+                                    <input id="color" name="Sort" type="radio" value="decreasePrice" />
+                                    <span>price decrease</span> <br />
+                                </div>
+                                <div>
+                                    <input id="color" name="Sort" type="radio" value="increasePrice" />
+                                    <span>price increase</span> <br />
+                                </div>
+                            </div>
+                            <div class="in-sort-block">
+                                <div>
+                                    <input id="color" name="Sort" type="radio" value="decreaseSubscribers" />
+                                    <span>subscribers decrease</span> <br />
+                                </div>
+                                <div>
+                                    <input id="color" name="Sort" type="radio" value="increaseSubscribers" />
+                                    <span>subscribers increase</span> <br />
+                                </div>
+                            </div>
+                            <div class="in-sort-block">
+                                <div>
+                                    <input id="color" name="Sort" type="radio" value="no" checked="checked" />
+                                    <span>Don't sort by subscribers</span> <br />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            }
+        </div>
+    </div>
+    
+    
+    
+
+   
+</div>
+
+<hr class="dashed" />
+@{
+    var channels = ViewBag.Channels as List<Channel>;
+
+    for (int i = 0; i < channels.Count; i += 4)
+    {
+        int a = 4;
+    <div class="card-deck">
+
+
+        @if (i + a > channels.Count)
+        {
+            while (i + a >= channels.Count)
+            {
+                a -= 1;
+            }
+            a += 1;
+        }
+
+
+        @for (int j = i; j < i + a; j++)
+        {
+
+
+            <div class="card">
+
+
+
+
+                <div class="image-center">
+                    @if (channels[j].Image == null || channels[j].Image == "")
+                    {
+
+
+                        <img src="~/Images/telesmall.png" class="round card-img-top" alt="..." />
+                    }
+                    else
+                    {
+                        <img src="~/Images/@channels[j].Image" class="card-img-top round" alt="..." />
+                    }
+                </div>
+
+                <div class="card-body  t-a-c">
+                    <h5 class="card-title">@channels[j].Name</h5>
+
+                    <a href="@channels[j].Link">@channels[j].Link</a>
+                    <p class="">
+                        Subscribers: @channels[j].CountOfSubscribers<br />
+                        Post price: <text class="bold"> @channels[j].PostPrice ₽</text>
+                    </p>
+
+                    <p class="card-text">@channels[j].Description</p>
+
+                </div>
+
+                <div class="card-footer ">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        if (channels[j].PostPrice <= ViewBag.Balance)
+                        {
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#@channels[j].UserName.Remove(0,2)">
+                                Order advertising
+                            </button>
+                        }
+                        else
+                        {
+                            <p class="red">
+                                You do not have enough money in your account
+                                </p>
+                        }
+
+                    }
+                    else
+                    {
+                        <p class="red">
+                            To order advertising, go to your account
+                        </p>
+                    }
+
+                </div>
+
+            </div>
+
+
+
+
+            <div class="modal fade" id="@channels[j].UserName.Remove(0,2)" tabindex="-1" role="dialog" aria-labelledby="@channels[j].UserName.Remove(0,2)" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="@channels[j].UserName.Remove(0,2)">Order advertising on the  "@channels[j].Name"  channel</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form action="/Orders/Create" method="post">
+
+                            <div class="modal-body">
+
+                                <div class="form-group">
+                                    <input type="hidden" name="Cost" value="@channels[j].PostPrice" />
+                                    <input type="hidden" name="ChannelId" value="@channels[j].Id" />
+                                    <h4 for="PublicationDate" class="col-form-label">Date publication:</h4>
+                                    <input name="PublicationDate" type="date" class="form-control" required min="@DateTime.Now.Date.ToString("yyyy-MM-dd")">
+                                    <h4 for="PostId" class="col-form-label">Post:</h4>
+
+                                    @Html.DropDownList("PostId", ViewBag.PostId as SelectList, new { @class = "form-control", @required = "required" })
+                                </div>
+
+
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">
+                                    Make an order</button>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+        }
+
+        @if (a < 4)
+        {
+            for (int k = 0; k < (4 - a); k++)
+            {
+                <div class="card zeroborder">
+
+                </div>
+            }
+        }
+
+    </div>
+        <br />
+        <br />
+    }
 }

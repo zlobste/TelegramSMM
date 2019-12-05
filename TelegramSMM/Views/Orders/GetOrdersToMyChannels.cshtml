@@ -1,0 +1,74 @@
+﻿@model IEnumerable<TelegramSMM.Models.Order>
+
+@{
+    ViewBag.Title = "GetOrdersToMyChannels";
+}
+
+<h2 class="logo">ORDERS</h2>
+
+
+<div class="my-table">
+<table class="table ">
+    <tr class="table-col">
+        <th >
+            Channel
+        </th>
+        <th>
+            Post
+        </th>
+        <th>
+                
+            Desired publication date
+        </th>
+        <th>
+            Order date
+        </th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <a href="@item.Channel.Link">@Html.DisplayFor(modelItem => item.Channel.Name)</a>
+            </td>
+            <td>
+                @Html.ActionLink(item.Post.Title, "Details", "Posts", new { id = item.PostId }, new { @class = "" })
+            </td>
+            <td>
+               @item.PublicationDate.ToString("dd.MM.yyyy")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DatePost)
+            </td>
+            <td class="column">
+            @if (item.DealCompleted == false)
+            {
+                if (item.IsDone == false)
+                {
+                    @Html.ActionLink("Cancel the order", "DeleteOrderToChannel", new {id = item.Id}, new {@class = "btn btn-danger"})
+                }
+                if (item.IsDone == false)
+                {
+                    @Html.ActionLink("I am posted this post", "AdminPosted", new {id = item.Id}, new {@class = "btn btn-primary"})
+                }
+                else
+                {
+                    <p class="green">
+                       
+                        Customer confirms compliance...
+                    </p>
+                }
+            }
+            else
+            {
+                <p class="green">
+                    deal completed
+                </p>
+                @Html.ActionLink("View check", "SalesReceipt", new {id = item.Id}, new {@class = "btn btn-success"})
+            }
+            </td>
+        </tr>
+    }
+
+</table>
+</div>

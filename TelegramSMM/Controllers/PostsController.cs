@@ -72,8 +72,34 @@ namespace TelegramSMM.Controllers
             return View(post);
         }
 
+
+
+
+        // GET: Posts/Details/
+        public async Task<ActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Post post = await db.Posts.FindAsync(id);
+            if (post == null)
+            {
+                return HttpNotFound();
+            }
+            return View(post);
+        }
+
+
+
+
+
+
+
+
+
         // POST: Posts/Edit/
-        
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(Post post, HttpPostedFileBase Picture)
@@ -82,7 +108,7 @@ namespace TelegramSMM.Controllers
             {
                 
                 string fileName = Guid.NewGuid().ToString() + ".jpeg";
-                if (post.Image != fileName)
+                if (post.Image != fileName && Picture!=null)
                 {
                     Picture.SaveAs(Server.MapPath("~/Images/" + fileName));
                     post.Image = fileName;
