@@ -314,3 +314,14 @@ footer {
 .padd {
     margin-left: 50px;
 }
+
+.ch-report {
+    margin-left: 50px;
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+.big-font {
+    font-weight: 900;
+    color: #007bff;
+}

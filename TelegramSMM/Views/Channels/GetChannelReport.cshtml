@@ -1,0 +1,21 @@
+﻿@model TelegramSMM.Models.Channel
+
+
+@{
+    ViewBag.Title = "ChannelReport";
+}
+<h2 class="logo">ОТЧЕТ</h2>
+<hr class="dashed" />
+
+<div class="ch-report">
+    <div class="big-font">Прибыль канала за @DateTime.Now.ToString("MM.yyyy")</div>
+    <div>Компания: Telemetr</div>
+    <div>Название канала: @Model.Name</div>
+    <div>Ссылка на канал: @Model.Link</div>
+    <div>Количество подписчиков: @Model.CountOfSubscribers</div>
+    <div>Цена за один рекламный пост: @Model.PostPrice</div>
+    <div>Тип канала: @Model.Type</div>
+    <div>Количество заказов в этом месяце: @ViewBag.Count</div>
+    <div>Канал за месяц принес: @ViewBag.Sum ₽ </div>
+    <div class="big-font">Дата формирования отчета: @DateTime.Now.ToString("MM.dd.yyyy")</div>
+</div>

@@ -27,6 +27,7 @@ namespace TelegramSMM.Controllers
             }
         }
         // GET: Orders
+        [Authorize]
         public async Task<ActionResult> Index()
         {
             string UserId = User.Identity.GetUserId();
@@ -38,6 +39,7 @@ namespace TelegramSMM.Controllers
 
 
         // GET: Orders
+        [Authorize]
         public async Task<ActionResult> GetOrdersToMyChannels()
         {
             
@@ -52,6 +54,7 @@ namespace TelegramSMM.Controllers
 
 
         // POST: Orders/Create
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult> Create(Order order)
         {
@@ -81,7 +84,7 @@ namespace TelegramSMM.Controllers
         }
 
 
-
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult> Delete(int? id)
         {
@@ -106,7 +109,7 @@ namespace TelegramSMM.Controllers
 
 
 
-        
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult> ViewСheck(int? id)
         {
@@ -129,7 +132,7 @@ namespace TelegramSMM.Controllers
             return View(order);
         }
 
-        
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult> SalesReceipt(int? id)
         {
@@ -150,7 +153,7 @@ namespace TelegramSMM.Controllers
             return View(order);
         }
 
-
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult> AdminPosted(int? id)
         {
@@ -173,7 +176,7 @@ namespace TelegramSMM.Controllers
 
 
 
-
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult> ConfirmAdvert(int? id)
         {
@@ -202,6 +205,7 @@ namespace TelegramSMM.Controllers
 
 
         // GET: Orders/DeleteOrderToChannel/
+        [Authorize]
         public async Task<ActionResult> DeleteOrderToChannel(int? id)
         {
             if (id == null)
@@ -209,11 +213,16 @@ namespace TelegramSMM.Controllers
                 return HttpNotFound();
             }
             Order order = await db.Orders.FindAsync(id);
+            Post post = await db.Posts.FindAsync(order.PostId);
+
+            User user = await UserManager.FindByIdAsync(post.UserId);
+            user.Balance += order.Cost;
+            await UserManager.UpdateAsync(user);
             if (order == null)
             {
                 return HttpNotFound();
             }
-
+            
             order.Renouncement = true;
             db.Entry(order).State = EntityState.Modified;
             await db.SaveChangesAsync();
@@ -222,10 +231,7 @@ namespace TelegramSMM.Controllers
         }
 
 
-
-
-
-
+       
         protected override void Dispose(bool disposing)
         {
             if (disposing)

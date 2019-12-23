@@ -7,17 +7,19 @@
 <h2 class="logo">Sales Receipt</h2>
 <hr class="dashed" />
 <div class="padd">
-    <dl class="dl-horizontal ">
+    <dl class="dl-horizontal ch-report">
+        <div class="ишп-ащте">ЧЕК "ПРОДАЖА РЕКЛАМНОГО ПОСТА"</div>
         <dt>
-            Company: Telemetr
+            Компания: Telemetr
         </dt>
         <dt>
-           
-            You sold an advertisement on a channel: @Model.Channel.Name
+            Вы продали рекламу на канале: @Model.Channel.Name
         </dt>
-
         <dt>
-            @Html.DisplayNameFor(model => model.PublicationDate)
+            Количество постов: 1
+        </dt>
+        <dt>
+            Дата публикации рекламного поста:
         </dt>
 
         <dd>
@@ -25,15 +27,15 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Cost)
+            Стоимость публикации:
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Cost) ₽
         </dd>
 
-        <dt>
-            Order date
+        <dt class="big-font">
+            Дата формирования отчета
         </dt>
 
         <dd>

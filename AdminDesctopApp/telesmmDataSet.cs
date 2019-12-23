@@ -4,6 +4,9 @@
 
     partial class telesmmDataSet
     {
+        partial class ChannelsDataTable
+        {
+        }
     }
 }
 

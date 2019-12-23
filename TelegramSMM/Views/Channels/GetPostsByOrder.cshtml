@@ -1,0 +1,82 @@
+﻿@using TelegramSMM.Models
+@model IEnumerable<TelegramSMM.Models.Post>
+
+
+@{
+    ViewBag.Title = "GetPostsByChannel";
+}
+
+<h2 class="logo"> ON "@ViewBag.ChannelName.ToUpper()" WERE POSTED</h2>
+<hr class="dashed" />
+
+@if (ViewBag.Count == 0 || (ViewBag.Count == null))
+{
+<div class="ch-report big-font" style="text-align: center">There are no posts posted on this channel</div>
+}
+@if(Model!=null){
+
+    var posts = Model as List<Post>;
+
+
+    for (int i = 0; i < posts.Count; i += 4)
+    {
+        int a = 4;
+        <div class="card-deck">
+
+
+            @if (i + a > posts.Count)
+            {
+                while (i + a >= posts.Count)
+                {
+                    a -= 1;
+                }
+                a += 1;
+            }
+
+
+            @for (int j = i; j < i + a; j++)
+            {
+
+
+                <div class="card">
+                    @if (posts[j].Image == null || posts[j].Image == "")
+                    {
+
+                        <img src="~/Images/cardImage.jpg" class="card-img-top" alt="..." />
+                    }
+                    else
+                    {
+                        <img src="~/Images/@posts[j].Image" class="card-img-top" alt="..." />
+                    }
+
+                    <div class="card-body ">
+                        <h5 class="card-title">@posts[j].Title</h5>
+                        <a href="@posts[j].Link">@posts[j].Link</a>
+                        <p class="card-text">@posts[j].Text</p>
+                    </div>
+                   
+                 
+
+                </div>
+
+
+            }
+
+            @if (a < 4)
+            {
+                for (int k = 0; k < (4 - a); k++)
+                {
+                    <div class="card zeroborder">
+
+                    </div>
+                }
+            }
+
+        </div>
+        <br />
+        <br />
+    }
+}
+
+
+

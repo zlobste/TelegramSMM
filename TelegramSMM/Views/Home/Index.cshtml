@@ -10,8 +10,13 @@
 
 
 
+
+
+@Html.ActionLink("TOP 4 CHANNELS", "GetTopFourChannels", "Home", new { @class = "btn btn-primary ml-5 mt-3" })
+@Html.ActionLink("TOP 4 POSTS", "GetTopFourPosts", "Posts", null, new { @class = "btn btn-primary ml-5 mt-3" })
+
 <div class="colm">
-  
+
 
 
 
@@ -39,7 +44,7 @@
                                         <text class="sort-logo">post price</text>
                                         @if (Model.MinPrice != null)
                                         {
-                                            <input class="form-control border-primary py-2" placeholder="min" name="MinPrice" id="MinPrice"  type="number" min="0" value="@Model.MinPrice">
+                                            <input class="form-control border-primary py-2" placeholder="min" name="MinPrice" id="MinPrice" type="number" min="0" value="@Model.MinPrice">
                                         }
                                         else
                                         {
@@ -64,7 +69,7 @@
                                         }
                                         else
                                         {
-                                            <input class="form-control border-primary py-2" placeholder="min" name="MinSubscribers"  type="number" min="0" id="MinSubscribers">
+                                            <input class="form-control border-primary py-2" placeholder="min" name="MinSubscribers" type="number" min="0" id="MinSubscribers">
                                         }
 
 
@@ -195,7 +200,7 @@
                             }
 
 
-                           
+
                         </div>
                     </div>
                 </form>
@@ -268,11 +273,11 @@
             }
         </div>
     </div>
-    
-    
-    
 
-   
+
+
+
+
 </div>
 
 <hr class="dashed" />
@@ -282,136 +287,140 @@
     for (int i = 0; i < channels.Count; i += 4)
     {
         int a = 4;
-    <div class="card-deck">
+        <div class="card-deck">
 
 
-        @if (i + a > channels.Count)
-        {
-            while (i + a >= channels.Count)
+            @if (i + a > channels.Count)
             {
-                a -= 1;
+                while (i + a >= channels.Count)
+                {
+                    a -= 1;
+                }
+                a += 1;
             }
-            a += 1;
-        }
 
 
-        @for (int j = i; j < i + a; j++)
-        {
+            @for (int j = i; j < i + a; j++)
+            {
 
 
-            <div class="card">
+                <div class="card">
 
 
 
 
-                <div class="image-center">
-                    @if (channels[j].Image == null || channels[j].Image == "")
-                    {
-
-
-                        <img src="~/Images/telesmall.png" class="round card-img-top" alt="..." />
-                    }
-                    else
-                    {
-                        <img src="~/Images/@channels[j].Image" class="card-img-top round" alt="..." />
-                    }
-                </div>
-
-                <div class="card-body  t-a-c">
-                    <h5 class="card-title">@channels[j].Name</h5>
-
-                    <a href="@channels[j].Link">@channels[j].Link</a>
-                    <p class="">
-                        Subscribers: @channels[j].CountOfSubscribers<br />
-                        Post price: <text class="bold"> @channels[j].PostPrice ₽</text>
-                    </p>
-
-                    <p class="card-text">@channels[j].Description</p>
-
-                </div>
-
-                <div class="card-footer ">
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        if (channels[j].PostPrice <= ViewBag.Balance)
+                    <div class="image-center">
+                        @if (channels[j].Image == null || channels[j].Image == "")
                         {
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#@channels[j].UserName.Remove(0,2)">
-                                Order advertising
-                            </button>
+
+
+                            <img src="~/Images/telesmall.png" class="round card-img-top" alt="..." />
+                        }
+                        else
+                        {
+                            <img src="~/Images/@channels[j].Image" class="card-img-top round" alt="..." />
+                        }
+                    </div>
+
+                    <div class="card-body  t-a-c">
+                        <h5 class="card-title">@channels[j].Name</h5>
+
+                        <a href="@channels[j].Link">@channels[j].Link</a>
+                        <p class="">
+                            Subscribers: @channels[j].CountOfSubscribers<br />
+                            Post price: <text class="bold"> @channels[j].PostPrice ₽</text>
+                        </p>
+
+                        <p class="card-text">@channels[j].Description</p>
+
+                    </div>
+
+                    <div class="card-footer ">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            if (channels[j].PostPrice <= ViewBag.Balance)
+                            {
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#@channels[j].UserName.Remove(0,2)">
+                                    Order advertising
+                                </button>
+                            }
+                            else
+                            {
+                                <p class="red">
+                                    You do not have enough money in your account
+                                </p>
+                            }
+
                         }
                         else
                         {
                             <p class="red">
-                                You do not have enough money in your account
-                                </p>
+                                To order advertising, go to your account
+                            </p>
                         }
 
-                    }
-                    else
-                    {
-                        <p class="red">
-                            To order advertising, go to your account
-                        </p>
-                    }
+                    </div>
 
                 </div>
 
-            </div>
 
 
 
+                <div class="modal fade" id="@channels[j].UserName.Remove(0,2)" tabindex="-1" role="dialog" aria-labelledby="@channels[j].UserName.Remove(0,2)" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="@channels[j].UserName.Remove(0,2)">Order advertising on the  "@channels[j].Name"  channel</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <form action="/Orders/Create" method="post">
 
-            <div class="modal fade" id="@channels[j].UserName.Remove(0,2)" tabindex="-1" role="dialog" aria-labelledby="@channels[j].UserName.Remove(0,2)" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="@channels[j].UserName.Remove(0,2)">Order advertising on the  "@channels[j].Name"  channel</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <form action="/Orders/Create" method="post">
+                                <div class="modal-body">
 
-                            <div class="modal-body">
+                                    <div class="form-group">
+                                        <input type="hidden" name="Cost" value="@channels[j].PostPrice" />
+                                        <input type="hidden" name="ChannelId" value="@channels[j].Id" />
+                                        <h4 for="PublicationDate" class="col-form-label">Date publication:</h4>
+                                        <input name="PublicationDate" type="date" class="form-control" required min="@DateTime.Now.Date.ToString("yyyy-MM-dd")">
+                                        <h4 for="PostId" class="col-form-label">Post:</h4>
+                                        @if (User.Identity.IsAuthenticated)
+                                        {
+                                            @Html.DropDownList("PostId", ViewBag.PostId as SelectList, new { @class = "form-control", @required = "required" })
+                                        }
 
-                                <div class="form-group">
-                                    <input type="hidden" name="Cost" value="@channels[j].PostPrice" />
-                                    <input type="hidden" name="ChannelId" value="@channels[j].Id" />
-                                    <h4 for="PublicationDate" class="col-form-label">Date publication:</h4>
-                                    <input name="PublicationDate" type="date" class="form-control" required min="@DateTime.Now.Date.ToString("yyyy-MM-dd")">
-                                    <h4 for="PostId" class="col-form-label">Post:</h4>
+                                    </div>
 
-                                    @Html.DropDownList("PostId", ViewBag.PostId as SelectList, new { @class = "form-control", @required = "required" })
+
                                 </div>
 
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">
+                                        Make an order
+                                    </button>
 
-                            </div>
-
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary">
-                                    Make an order</button>
-
-                            </div>
-                        </form>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
-            </div>
 
 
-        }
-
-        @if (a < 4)
-        {
-            for (int k = 0; k < (4 - a); k++)
-            {
-                <div class="card zeroborder">
-
-                </div>
             }
-        }
 
-    </div>
+            @if (a < 4)
+            {
+                for (int k = 0; k < (4 - a); k++)
+                {
+                    <div class="card zeroborder">
+
+                    </div>
+                }
+            }
+
+        </div>
         <br />
         <br />
     }

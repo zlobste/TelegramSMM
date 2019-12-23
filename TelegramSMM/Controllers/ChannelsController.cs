@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Security.Policy;
 using System.Web;
+using System.Web.DynamicData;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Newtonsoft.Json;
@@ -21,17 +22,50 @@ namespace TelegramSMM.Controllers
         private const string BOT_KEY = "1038005960:AAE5qMw8hD1eiMCvukU6IQ3QizbfV3BAeow";
 
         // GET: Channels
+        [Authorize]
         public async Task<ActionResult> Index()
         {
+            string UserId = User.Identity.GetUserId();
             var channels = db.Channels.Include(c => c.User);
-            return View(await channels.ToListAsync());
+            var schannels = from a in channels
+                where a.User.Id == UserId
+                select a;
+            return View(await schannels.ToListAsync());
         }
 
-       
-
         
+        [Authorize]
+        public async Task<ActionResult> GetChannelReport(string Id)
+        {
+
+            if (Id == "" || Id == null)
+            {
+                return HttpNotFound();
+            }
+            string UserId = User.Identity.GetUserId();
+            Channel channel = await db.Channels.FindAsync(Id);
+
+            List<Order> orders = (from o in db.Orders.ToList()
+                                 where o.IsDone == true && o.ChannelId.Equals(Id) && o.PublicationDate.ToString("MM/yyyy").Equals(DateTime.Now.ToString("MM/yyyy")) 
+                                  select o).ToList();
+            double sum = 0;
+
+            foreach (var a in orders)
+            {
+                sum += a.Cost;
+            }
+
+            ViewBag.Sum = sum;
+            ViewBag.Count = orders.Count;
+            return View(channel);
+        }
+
+
+
+
 
         // GET: Channels/Create
+        [Authorize]
         public ActionResult Create()
         {
             
@@ -41,6 +75,7 @@ namespace TelegramSMM.Controllers
 
 
         // POST: Channels/Create
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "UserName,PostPrice")] Channel channel)
@@ -71,7 +106,7 @@ namespace TelegramSMM.Controllers
                     Channel ch = await db.Channels.FindAsync(item.Result.Id.ToString());
                     if (ch != null)
                     {
-                        ModelState.AddModelError("", "This channel is not your(((");
+                        ModelState.AddModelError("", "This channel is not yours(((");
                         return View(channel);
                     }
 
@@ -143,11 +178,39 @@ namespace TelegramSMM.Controllers
         }
 
 
-       
+        [Authorize]
+        public ActionResult GetPostsByOrder(string Id)
+        {
+            if (Id == null)
+            {
+                return HttpNotFound();
+            }
+            Channel channel = db.Channels.Find(Id);
+            List<Order> orders = (from a in db.Orders.ToList()
+                where a.ChannelId == Id
+                select a).ToList();
+            List<Post> posts = new List<Post>();
+            List<int> postsId = new List<int>();
+            foreach (var p in orders)
+            {
+                if (postsId.IndexOf(db.Posts.Find(p.PostId).Id) == -1)
+                {
+                    posts.Add(db.Posts.Find(p.PostId));
+                    postsId.Add(db.Posts.Find(p.PostId).Id);
+                }
+
+            }
+
+            ViewBag.Count = posts.Count;
+            ViewBag.Posts = posts;
+            ViewBag.ChannelName = channel.Name;
+            return View(posts);
+        }
 
 
 
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult> Edit(Channel ch )
         {
 
@@ -165,8 +228,9 @@ namespace TelegramSMM.Controllers
 
        
 
-        // POST: Channels/Delete/5
+        // POST: Channels/Delete/
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult> Delete(string id)
         {
 

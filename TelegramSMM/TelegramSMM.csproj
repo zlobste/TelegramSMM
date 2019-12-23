@@ -224,6 +224,10 @@
     <Compile Include="ViewModels\ViewPost.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\telesmm.mdf" />
+    <Content Include="App_Data\telesmm_log.ldf">
+      <DependentUpon>telesmm.mdf</DependentUpon>
+    </Content>
     <Content Include="Components\App.jsx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
@@ -312,9 +316,13 @@
     <Content Include="Views\Posts\Details.cshtml" />
     <Content Include="Views\Orders\ViewСheck.cshtml" />
     <Content Include="Views\Orders\SalesReceipt.cshtml" />
+    <Content Include="Views\Home\GetTopFourChannels.cshtml" />
+    <Content Include="Views\Channels\GetChannelReport.cshtml" />
+    <Content Include="Views\Posts\GetChannelsByOrder.cshtml" />
+    <Content Include="Views\Channels\GetPostsByOrder.cshtml" />
+    <Content Include="Views\Posts\GetTopFourPosts.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>

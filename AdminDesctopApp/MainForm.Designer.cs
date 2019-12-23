@@ -39,13 +39,7 @@
             this.channelsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ordersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.postsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.themesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.themeChannelsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editQueryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.updateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -53,13 +47,11 @@
             this.aspNetUsersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.telesmmDataSet = new AdminDesctopApp.telesmmDataSet();
-            this.themesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.aspNetRolesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.aspNetUserRolesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.channelsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ordersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.postsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.themeChannelsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
@@ -78,20 +70,16 @@
             this.channelsTableAdapter = new AdminDesctopApp.telesmmDataSetTableAdapters.ChannelsTableAdapter();
             this.ordersTableAdapter = new AdminDesctopApp.telesmmDataSetTableAdapters.OrdersTableAdapter();
             this.postsTableAdapter = new AdminDesctopApp.telesmmDataSetTableAdapters.PostsTableAdapter();
-            this.themeChannelsTableAdapter = new AdminDesctopApp.telesmmDataSetTableAdapters.ThemeChannelsTableAdapter();
-            this.themesTableAdapter = new AdminDesctopApp.telesmmDataSetTableAdapters.ThemesTableAdapter();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.aspNetUsersBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.telesmmDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.themesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.aspNetRolesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.aspNetUserRolesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.channelsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ordersBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.postsBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.themeChannelsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
             this.SuspendLayout();
@@ -102,11 +90,10 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.exitToolStripMenuItem,
             this.dataBaseToolStripMenuItem,
-            this.editQueryToolStripMenuItem,
-            this.editToolStripMenuItem});
+            this.editQueryToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1117, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1117, 30);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -125,9 +112,7 @@
             this.userRolesToolStripMenuItem,
             this.channelsToolStripMenuItem,
             this.ordersToolStripMenuItem,
-            this.postsToolStripMenuItem,
-            this.themesToolStripMenuItem,
-            this.themeChannelsToolStripMenuItem});
+            this.postsToolStripMenuItem});
             this.dataBaseToolStripMenuItem.Name = "dataBaseToolStripMenuItem";
             this.dataBaseToolStripMenuItem.Size = new System.Drawing.Size(86, 24);
             this.dataBaseToolStripMenuItem.Text = "DataBase";
@@ -136,58 +121,44 @@
             // usersToolStripMenuItem
             // 
             this.usersToolStripMenuItem.Name = "usersToolStripMenuItem";
-            this.usersToolStripMenuItem.Size = new System.Drawing.Size(196, 26);
+            this.usersToolStripMenuItem.Size = new System.Drawing.Size(157, 26);
             this.usersToolStripMenuItem.Text = "Users";
             this.usersToolStripMenuItem.Click += new System.EventHandler(this.usersToolStripMenuItem_Click);
             // 
             // rolesToolStripMenuItem
             // 
             this.rolesToolStripMenuItem.Name = "rolesToolStripMenuItem";
-            this.rolesToolStripMenuItem.Size = new System.Drawing.Size(196, 26);
+            this.rolesToolStripMenuItem.Size = new System.Drawing.Size(157, 26);
             this.rolesToolStripMenuItem.Text = "Roles";
             this.rolesToolStripMenuItem.Click += new System.EventHandler(this.rolesToolStripMenuItem_Click);
             // 
             // userRolesToolStripMenuItem
             // 
             this.userRolesToolStripMenuItem.Name = "userRolesToolStripMenuItem";
-            this.userRolesToolStripMenuItem.Size = new System.Drawing.Size(196, 26);
+            this.userRolesToolStripMenuItem.Size = new System.Drawing.Size(157, 26);
             this.userRolesToolStripMenuItem.Text = "UserRoles";
             this.userRolesToolStripMenuItem.Click += new System.EventHandler(this.userRolesToolStripMenuItem_Click);
             // 
             // channelsToolStripMenuItem
             // 
             this.channelsToolStripMenuItem.Name = "channelsToolStripMenuItem";
-            this.channelsToolStripMenuItem.Size = new System.Drawing.Size(196, 26);
+            this.channelsToolStripMenuItem.Size = new System.Drawing.Size(157, 26);
             this.channelsToolStripMenuItem.Text = "Channels";
             this.channelsToolStripMenuItem.Click += new System.EventHandler(this.channelsToolStripMenuItem_Click);
             // 
             // ordersToolStripMenuItem
             // 
             this.ordersToolStripMenuItem.Name = "ordersToolStripMenuItem";
-            this.ordersToolStripMenuItem.Size = new System.Drawing.Size(196, 26);
+            this.ordersToolStripMenuItem.Size = new System.Drawing.Size(157, 26);
             this.ordersToolStripMenuItem.Text = "Orders";
             this.ordersToolStripMenuItem.Click += new System.EventHandler(this.ordersToolStripMenuItem_Click);
             // 
             // postsToolStripMenuItem
             // 
             this.postsToolStripMenuItem.Name = "postsToolStripMenuItem";
-            this.postsToolStripMenuItem.Size = new System.Drawing.Size(196, 26);
+            this.postsToolStripMenuItem.Size = new System.Drawing.Size(157, 26);
             this.postsToolStripMenuItem.Text = "Posts";
             this.postsToolStripMenuItem.Click += new System.EventHandler(this.postsToolStripMenuItem_Click);
-            // 
-            // themesToolStripMenuItem
-            // 
-            this.themesToolStripMenuItem.Name = "themesToolStripMenuItem";
-            this.themesToolStripMenuItem.Size = new System.Drawing.Size(196, 26);
-            this.themesToolStripMenuItem.Text = "Themes";
-            this.themesToolStripMenuItem.Click += new System.EventHandler(this.themesToolStripMenuItem_Click);
-            // 
-            // themeChannelsToolStripMenuItem
-            // 
-            this.themeChannelsToolStripMenuItem.Name = "themeChannelsToolStripMenuItem";
-            this.themeChannelsToolStripMenuItem.Size = new System.Drawing.Size(196, 26);
-            this.themeChannelsToolStripMenuItem.Text = "ThemeChannels";
-            this.themeChannelsToolStripMenuItem.Click += new System.EventHandler(this.themeChannelsToolStripMenuItem_Click);
             // 
             // editQueryToolStripMenuItem
             // 
@@ -195,38 +166,6 @@
             this.editQueryToolStripMenuItem.Size = new System.Drawing.Size(88, 24);
             this.editQueryToolStripMenuItem.Text = "EditQuery";
             this.editQueryToolStripMenuItem.Click += new System.EventHandler(this.editQueryToolStripMenuItem_Click);
-            // 
-            // editToolStripMenuItem
-            // 
-            this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addToolStripMenuItem,
-            this.updateToolStripMenuItem,
-            this.deleteToolStripMenuItem});
-            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(49, 24);
-            this.editToolStripMenuItem.Text = "Edit";
-            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
-            // 
-            // addToolStripMenuItem
-            // 
-            this.addToolStripMenuItem.Name = "addToolStripMenuItem";
-            this.addToolStripMenuItem.Size = new System.Drawing.Size(141, 26);
-            this.addToolStripMenuItem.Text = "Add";
-            this.addToolStripMenuItem.Click += new System.EventHandler(this.addToolStripMenuItem_Click);
-            // 
-            // updateToolStripMenuItem
-            // 
-            this.updateToolStripMenuItem.Name = "updateToolStripMenuItem";
-            this.updateToolStripMenuItem.Size = new System.Drawing.Size(141, 26);
-            this.updateToolStripMenuItem.Text = "Update";
-            this.updateToolStripMenuItem.Click += new System.EventHandler(this.updateToolStripMenuItem_Click);
-            // 
-            // deleteToolStripMenuItem
-            // 
-            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(141, 26);
-            this.deleteToolStripMenuItem.Text = "Delete";
-            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
             // contextMenuStrip1
             // 
@@ -283,11 +222,6 @@
             this.telesmmDataSet.DataSetName = "telesmmDataSet";
             this.telesmmDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // themesBindingSource
-            // 
-            this.themesBindingSource.DataMember = "Themes";
-            this.themesBindingSource.DataSource = this.bindingSource1;
-            // 
             // aspNetRolesBindingSource
             // 
             this.aspNetRolesBindingSource.DataMember = "AspNetRoles";
@@ -312,11 +246,6 @@
             // 
             this.postsBindingSource.DataMember = "Posts";
             this.postsBindingSource.DataSource = this.bindingSource1;
-            // 
-            // themeChannelsBindingSource
-            // 
-            this.themeChannelsBindingSource.DataMember = "ThemeChannels";
-            this.themeChannelsBindingSource.DataSource = this.bindingSource1;
             // 
             // bindingNavigator1
             // 
@@ -345,7 +274,7 @@
             this.bindingNavigator1.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.bindingNavigator1.Name = "bindingNavigator1";
             this.bindingNavigator1.PositionItem = this.bindingNavigatorPositionItem;
-            this.bindingNavigator1.Size = new System.Drawing.Size(312, 27);
+            this.bindingNavigator1.Size = new System.Drawing.Size(312, 31);
             this.bindingNavigator1.TabIndex = 4;
             this.bindingNavigator1.Text = "bindingNavigator1";
             // 
@@ -355,7 +284,7 @@
             this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
             this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
             this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(29, 24);
+            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(29, 28);
             this.bindingNavigatorAddNewItem.Text = "Добавить";
             // 
             // bindingNavigatorCountItem
@@ -459,14 +388,6 @@
             // 
             this.postsTableAdapter.ClearBeforeFill = true;
             // 
-            // themeChannelsTableAdapter
-            // 
-            this.themeChannelsTableAdapter.ClearBeforeFill = true;
-            // 
-            // themesTableAdapter
-            // 
-            this.themesTableAdapter.ClearBeforeFill = true;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -486,13 +407,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.aspNetUsersBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.telesmmDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.themesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.aspNetRolesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.aspNetUserRolesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.channelsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ordersBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.postsBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.themeChannelsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
             this.bindingNavigator1.ResumeLayout(false);
             this.bindingNavigator1.PerformLayout();
@@ -509,7 +428,6 @@
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem dataBaseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editQueryToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dataGridView1;
@@ -525,18 +443,12 @@
         private telesmmDataSetTableAdapters.OrdersTableAdapter ordersTableAdapter;
         private System.Windows.Forms.BindingSource postsBindingSource;
         private telesmmDataSetTableAdapters.PostsTableAdapter postsTableAdapter;
-        private System.Windows.Forms.BindingSource themeChannelsBindingSource;
-        private telesmmDataSetTableAdapters.ThemeChannelsTableAdapter themeChannelsTableAdapter;
-        private System.Windows.Forms.BindingSource themesBindingSource;
-        private telesmmDataSetTableAdapters.ThemesTableAdapter themesTableAdapter;
         private System.Windows.Forms.ToolStripMenuItem usersToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem rolesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem userRolesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem channelsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ordersToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem postsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem themesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem themeChannelsToolStripMenuItem;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingNavigator bindingNavigator1;
         private System.Windows.Forms.ToolStripButton bindingNavigatorAddNewItem;
@@ -550,9 +462,6 @@
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveNextItem;
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveLastItem;
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
-        private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem updateToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
     }
 }
 

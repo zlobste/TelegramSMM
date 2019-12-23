@@ -133,7 +133,23 @@ namespace TelegramSMM.Controllers
         }
 
 
-       
+        [HttpGet]
+        public ActionResult GetTopFourChannels()
+        {
+            List<Channel>channels = db.Channels.Include(c => c.User).ToList();
+            
+
+            channels = channels.OrderByDescending(i => i.CountOfSubscribers).ToList();
+            List<Channel> TopFour = new List<Channel>();
+            TopFour.Add(channels[0]);
+            TopFour.Add(channels[1]);
+            TopFour.Add(channels[2]);
+            TopFour.Add(channels[3]);
+            TopFour.OrderByDescending(i => i.CountOfSubscribers);
+            ViewBag.Channels = TopFour;
+
+            return View();
+        }
 
 
 

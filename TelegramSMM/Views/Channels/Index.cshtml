@@ -74,6 +74,13 @@
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#@channels[j].UserName.Remove(0,1)">
                         Delete
                     </button>
+
+                    @Html.ActionLink("Report", "GetChannelReport", new { Id = channels[j].Id }, new { @class = "btn btn-primary" })
+
+                    @Html.ActionLink("Get Posts", "GetPostsByOrder", new { Id = channels[j].Id }, new { @class = "btn btn-primary" })
+
+
+                   
                 </div>
 
 

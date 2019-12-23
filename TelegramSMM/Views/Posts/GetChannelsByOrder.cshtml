@@ -1,0 +1,94 @@
+﻿@using TelegramSMM.Models
+@model IEnumerable<TelegramSMM.Models.Channel>
+
+
+
+@{
+    ViewBag.Title = "GetChannelsByPost";
+}
+
+<h2 class="logo"> "@ViewBag.PostName.ToUpper()" WAS POSTED IN</h2>
+<hr class="dashed"/>
+
+@if (ViewBag.Count == 0 || (ViewBag.Count == null))
+{
+    <div class="ch-report big-font" style="text-align: center">this post was never posted anywhere</div>
+}
+@{
+    var channels = ViewBag.Channels as List<Channel>;
+
+    for (int i = 0; i < channels.Count; i += 4)
+    {
+        int a = 4;
+        <div class="card-deck">
+
+
+            @if (i + a > channels.Count)
+            {
+                while (i + a >= channels.Count)
+                {
+                    a -= 1;
+                }
+                a += 1;
+            }
+
+
+            @for (int j = i; j < i + a; j++)
+            {
+
+
+                <div class="card">
+
+
+
+
+                    <div class="image-center">
+                        @if (channels[j].Image == null || channels[j].Image == "")
+                        {
+
+
+                            <img src="~/Images/telesmall.png" class="round card-img-top" alt="..." />
+                        }
+                        else
+                        {
+                            <img src="~/Images/@channels[j].Image" class="card-img-top round" alt="..." />
+                        }
+                    </div>
+
+                    <div class="card-body  t-a-c">
+                        <h5 class="card-title">@channels[j].Name</h5>
+
+                        <a href="@channels[j].Link">@channels[j].Link</a>
+                        <p class="">
+                            Subscribers: @channels[j].CountOfSubscribers<br />
+                            Post price: <text class="bold"> @channels[j].PostPrice ₽</text>
+                        </p>
+
+                        <p class="card-text">@channels[j].Description</p>
+
+                    </div>
+
+
+
+                </div>
+
+
+
+            }
+
+            @if (a < 4)
+            {
+                for (int k = 0; k < (4 - a); k++)
+                {
+                    <div class="card zeroborder">
+
+                    </div>
+                }
+            }
+
+        </div>
+        <br />
+        <br />
+    }
+}
+

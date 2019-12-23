@@ -54,14 +54,17 @@
                         <p class="card-text">@posts[j].Text</p>
                     </div>
                     @{ string an = "aaaa";}
-                    <div class="card-footer ">
-                        
-                        @Html.ActionLink("Update", "Edit", "Posts", new { id = posts[j].Id }, new { @class = "btn btn-primary" })
-                       
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#@an@posts[j].Title.Replace(' ','a')">
-                            Delete
-                        </button>
-                    </div>
+                <div class="card-footer ">
+
+                    @Html.ActionLink("Update", "Edit", "Posts", new { id = posts[j].Id }, new { @class = "btn btn-primary" })
+
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#@an@posts[j].Title.Replace(' ','a')">
+                        Delete
+                    </button>
+                    @Html.ActionLink("Was posted", "GetChannelsByOrder", "Posts", new { id = posts[j].Id }, new { @class = "btn btn-primary" })
+
+                    
+                </div>
                     
                    
 
