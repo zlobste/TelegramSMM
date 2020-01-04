@@ -144,12 +144,17 @@ namespace TelegramSMM.Controllers
                 where a.Id == id
                 select a).ToList();
 
+           
+
             Order order = orders.First();
             if (order == null)
             {
                 return HttpNotFound();
             }
+
+            Post p = db.Posts.Find(order.PostId);
             ViewBag.User = await UserManager.FindByEmailAsync(User.Identity.Name);
+            ViewBag.Post = p;
             return View(order);
         }
 

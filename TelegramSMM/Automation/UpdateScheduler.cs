@@ -20,7 +20,7 @@ namespace TelegramSMM.Automation
                 .WithIdentity("trigger1", "group1")     // идентифицируем триггер с именем и группой
                 .StartNow()                            // запуск сразу после начала выполнения
                 .WithSimpleSchedule(x => x            // настраиваем выполнение действия
-                    .WithIntervalInMinutes(3)          // через 10 минут
+                    .WithIntervalInMinutes(3)          // через 3 минут
                     .RepeatForever())                   // бесконечное повторение
                 .Build();                               // создаем триггер
 

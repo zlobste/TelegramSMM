@@ -72,8 +72,6 @@ namespace TelegramSMM.Controllers
             {
                 channels = await db.Channels.ToListAsync();
             }
-            
-
 
             if (search.MaxPrice != null)
             {

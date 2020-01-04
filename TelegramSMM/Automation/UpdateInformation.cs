@@ -16,7 +16,6 @@ namespace TelegramSMM.Automation
 {
     public class UpdateInformation : IJob
     {
-
         private ApplicationContext db = new ApplicationContext();
         private const string BOT_KEY = "1038005960:AAE5qMw8hD1eiMCvukU6IQ3QizbfV3BAeow";
         public async Task Execute(IJobExecutionContext context)
@@ -25,16 +24,11 @@ namespace TelegramSMM.Automation
             {
                 var httpWebRequest = (HttpWebRequest)WebRequest.Create(
                 "https://api.telegram.org/bot" + BOT_KEY + "/getChat?chat_id=" + a.Id);
-
-
-                if (a.Image != null && a.Image != "")
+               /* if (a.Image != null && a.Image != "")
                 {
                     string deletePath = @"C:\Users\HP\source\repos\TelegramSMM\TelegramSMM\Images\" + a.Image;
                     System.IO.File.Delete(deletePath);
-                }
-              
-
-
+                }*/
                 httpWebRequest.ContentType = "text/json";
                 httpWebRequest.Method = "GET";//Можно GET
                 var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
@@ -57,10 +51,8 @@ namespace TelegramSMM.Automation
                         photo_file = item.Result.Photo.Small_file_id;
                     }
                 }
-
                 if (photo_file != "" && photo_file != null)
                 {
-
                     httpWebRequest = (HttpWebRequest)WebRequest.Create("https://api.telegram.org/bot" + BOT_KEY + "/getFile?file_id=" + photo_file);
                     httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
                     string file_link = "";
@@ -73,7 +65,6 @@ namespace TelegramSMM.Automation
                         Item item = JsonConvert.DeserializeObject<Item>(result);
                         file_link = item.Result.File_path;
                     }
-
                     string url = "https://api.telegram.org/file/bot1038005960:AAE5qMw8hD1eiMCvukU6IQ3QizbfV3BAeow/" + file_link;
                     string fileName = Guid.NewGuid().ToString() + ".jpeg";
                     using (WebClient client = new WebClient())
@@ -84,8 +75,6 @@ namespace TelegramSMM.Automation
                     }
                     a.Image = fileName;
                 }
-
-
                 httpWebRequest = (HttpWebRequest)WebRequest.Create("https://api.telegram.org/bot" + BOT_KEY + "/getChatMembersCount?chat_id=" + a.Id);
                 httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
                 using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
@@ -98,18 +87,12 @@ namespace TelegramSMM.Automation
                     a.CountOfSubscribers = item.Result;
                 }
 
-
                 db.Entry(a).State = EntityState.Modified;
             }
             await db.SaveChangesAsync();
-
         }
-
         public void Dispose() { }
-
     }
-
-
 }
 
 

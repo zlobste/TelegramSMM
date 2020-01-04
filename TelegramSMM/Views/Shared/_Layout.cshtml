@@ -12,111 +12,159 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    
-    <nav class="navbar navbar-light bg-light">
-        <a class="navbar-brand" href="/Home/Index">
-            <img src="https://icons-for-free.com/iconfiles/png/512/message+messenger+network+plane+social+media+telegram+icon-1320137113135966803.png" width="30" height="30" class="d-inline-block align-top" alt="">
-            Telemetr
-        </a>
-    </nav>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
+        <nav class="navbar navbar-light bg-light">
+            <a class="navbar-brand" href="/Home/Index">
+                <img src="https://image.flaticon.com/icons/png/512/2111/2111644.png" width="30" height="30" class="d-inline-block align-top" alt="">
+                Telemetr
+            </a>
+        </nav>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-            @if (User.Identity.IsAuthenticated)
-            {
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Cabinet
-                    </a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
 
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="/Channels/Index">My channels</a>
-                        <a class="dropdown-item" href="/Posts/Index">My posts</a>
-                        <a class="dropdown-item" href="/Orders/GetOrdersToMyChannels">Orders</a>
-                        <a class="dropdown-item" href="/Orders/Index">My orders</a>
-                    </div>
-
-                </li>
-            }
-            <li class="nav-item">
-                <a class="nav-link" href="/Home/Index">Search Channels</a>
-            </li>
-            @if (User.Identity.IsAuthenticated)
-            {
-                string UserId = User.Identity.GetUserId();
-                ApplicationContext db = new ApplicationContext();
-                User u = db.Users.FirstOrDefault(m => m.Id == UserId);
-               
-
-
-
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#">User: @u.Email</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Balance: @u.Balance ₽</a>
-                </li>
-                if (ViewBag.Title == "ViewСheck" || ViewBag.Title == "SalesReceipt" || ViewBag.Title == "ChannelReport")
+                @if (User.Identity.IsAuthenticated)
                 {
-                    <li class="alert alert-primary ml-5" role="alert">
-                        click  " Ctrl + P " to print report
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Cabinet
+                        </a>
+
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/Channels/Index">My channels</a>
+                            <a class="dropdown-item" href="/Posts/Index">My posts</a>
+                            <a class="dropdown-item" href="/Orders/GetOrdersToMyChannels">Orders</a>
+                            <a class="dropdown-item" href="/Orders/Index">My orders</a>
+                        </div>
+
                     </li>
                 }
-            }
-        </ul>
-        
-        
-
-
-        <ul class="nav justify-content-end">
-            
-
-
-            @if (User.Identity.IsAuthenticated)
-            {
                 <li class="nav-item">
-                    <a class="nav-link active" href="/Account/Logout">Sing out</a>
+                    <a class="nav-link" href="/Home/Index">
+                        Search
+                        <img src=" https://image.flaticon.com/icons/png/512/1913/1913407.png" width="25" height="25" class="d-inline-block align-top " alt="">
+                    </a>
+
                 </li>
-            }
-            else
-            {
-                if (ViewBag.Title != null && ViewBag.Title == "Register")
+                @if (User.Identity.IsAuthenticated)
+                {
+                    string UserId = User.Identity.GetUserId();
+                    ApplicationContext db = new ApplicationContext();
+                    User u = db.Users.FirstOrDefault(m => m.Id == UserId);
+
+
+
+
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#">User: @u.Email</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#">Balance: @u.Balance ₽</a>
+                    </li>
+                   
+                    if (ViewBag.Title == "ViewСheck" || ViewBag.Title == "SalesReceipt" || ViewBag.Title == "ChannelReport")
+                    {
+                        <li class="alert alert-primary ml-5" role="alert">
+                            click  " Ctrl + P " to print report
+                        </li>
+                    }
+                }
+            </ul>
+
+
+
+
+            <ul class="nav justify-content-end">
+
+
+
+                @if (User.Identity.IsAuthenticated)
                 {
                     <li class="nav-item">
-                        <a class="nav-link active" href="/Account/Login">Sing in</a>
+                        <a class="nav-link active" href="/Account/Logout">
+                            Sing out
+                            <img src="https://image.flaticon.com/icons/png/512/1828/1828490.png" width="25" height="25" class="d-inline-block align-top  ml-1" alt="">
+                        </a>
                     </li>
                 }
                 else
                 {
-                    <li class="nav-item">
-                        <a class="nav-link active" href="/Account/Register">Sing up</a>
-                    </li>
+                    if (ViewBag.Title != null && ViewBag.Title == "Register")
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link active" href="/Account/Login">Sing in</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link active" href="/Account/Register">Sing up</a>
+                        </li>
+                    }
+
+
                 }
 
+            </ul>
 
-            }
+        </div>
+    </nav>
 
-        </ul>
-        
+
+
+    @RenderBody()
+
+
+
+
+
+
+    <div class="modal fade" id="help2help" tabindex="-1" role="dialog" aria-labelledby="help2help" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="logo ml-1" style="text-align: center;">HELP</h1>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form>
+                    <h5 class="modal-title ml-4" id="help2help">
+                        Write a message to admin
+                    </h5>
+                    <div class="modal-body">
+
+                        <textarea class="form-control ml-1" id="AdditionalInformation" name="AdditionalInformation" rows="4" maxlength="140"></textarea>
+                    </div>
+
+                    <div class="modal-footer mr-3">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" href="/Home/Index">
+                            Send a message
+                        </button>
+
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
-</nav>
 
 
 
-@RenderBody()
-<hr class="dashed"/>
-<footer>
-    <p>&copy; @DateTime.Now.Year - Telemetr ASP.NET </p>
-</footer>
 
 
-@Scripts.Render("~/bundles/jquery")
-@Scripts.Render("~/bundles/bootstrap")
-@RenderSection("scripts", required: false)
+    <hr class="dashed" />
+    <footer>
+        <p>&copy; @DateTime.Now.Year - Telemetr ASP.NET </p>
+    </footer>
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
 </body>
 </html>
